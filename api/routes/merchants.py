@@ -98,7 +98,7 @@ async def onboard_merchant(
     """
     logger.info(
         "Onboarding request received",
-        extra={"mock_site_key": request.mock_site_key, "name": request.name},
+        extra={"mock_site_key": request.mock_site_key, "merchant_name": request.name},
     )
     try:
         result = await agent.onboard_merchant(request)

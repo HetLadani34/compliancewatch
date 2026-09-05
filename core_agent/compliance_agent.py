@@ -186,7 +186,7 @@ class ComplianceAgent:
 
         logger.info(
             "Starting merchant onboarding",
-            extra={"mock_site_key": mock_key, "name": request.name, "baseline_url": baseline_url},
+            extra={"mock_site_key": mock_key, "merchant_name": request.name, "baseline_url": baseline_url},
         )
 
         async with get_async_session() as session:

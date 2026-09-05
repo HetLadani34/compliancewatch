@@ -43,7 +43,10 @@ def _api_get(path: str, timeout: int = 10) -> dict | list | None:
         r.raise_for_status()
         return r.json()
     except requests.RequestException as e:
-        st.error(f"API error: {e}")
+        err_msg = str(e)
+        if hasattr(e, "response") and e.response is not None and e.response.text:
+            err_msg = f"{e.response.status_code} - {e.response.text}"
+        st.error(f"API error ({path}): {err_msg}")
         return None
 
 
@@ -53,7 +56,10 @@ def _api_post(path: str, json_data: dict | None = None, timeout: int = 180) -> d
         r.raise_for_status()
         return r.json()
     except requests.RequestException as e:
-        st.error(f"API error: {e}")
+        err_msg = str(e)
+        if hasattr(e, "response") and e.response is not None and e.response.text:
+            err_msg = f"{e.response.status_code} - {e.response.text}"
+        st.error(f"API error ({path}): {err_msg}")
         return None
 
 

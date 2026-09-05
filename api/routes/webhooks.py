@@ -218,13 +218,13 @@ async def onboard_all_demo_merchants(agent: AgentDep) -> DemoOnboardResult:
             request = MerchantOnboardRequest(**merchant_data)
             result = await agent.onboard_merchant(request)
             onboarded.append(result.merchant_name)
-            logger.info("Demo merchant onboarded.", extra={"name": result.merchant_name})
+            logger.info("Demo merchant onboarded.", extra={"merchant_name": result.merchant_name})
         except Exception as exc:
             failed.append(f"{merchant_data['name']}: {str(exc)}")
             logger.error(
                 "Demo merchant onboarding failed.",
                 exc_info=True,
-                extra={"name": merchant_data["name"]},
+                extra={"merchant_name": merchant_data["name"]},
             )
 
     return DemoOnboardResult(

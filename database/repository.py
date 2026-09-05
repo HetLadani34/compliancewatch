@@ -78,7 +78,7 @@ class MerchantRepository:
                 table="merchants",
             ) from exc
 
-        logger.info("Merchant created", extra={"merchant_id": merchant.id, "name": name})
+        logger.info("Merchant created", extra={"merchant_id": merchant.id, "merchant_name": name})
         return merchant
 
     async def get_by_id(self, merchant_id: str, *, load_relations: bool = False) -> Merchant:
