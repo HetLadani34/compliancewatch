@@ -306,16 +306,18 @@ class ScanReport(BaseModel):
 class MerchantOnboardRequest(BaseModel):
     """
     Input payload for onboarding a new merchant.
-
-    Sent by the API when a simulated Razorpay onboarding webhook fires.
+    Supports either pre-configured mock site keys or any custom live website URL.
     """
 
     name: str = Field(..., min_length=2, max_length=255)
-    business_category: str = Field(..., min_length=2, max_length=100)
-    mock_site_key: str = Field(
-        ...,
-        description="Key in the mock server's MERCHANT_REGISTRY. e.g. 'diya_store'.",
-        pattern=r"^[a-z][a-z0-9_]{1,49}$",
+    business_category: str = Field(default="E-Commerce", min_length=2, max_length=100)
+    mock_site_key: str | None = Field(
+        default=None,
+        description="Key in the mock server's MERCHANT_REGISTRY (e.g. 'diya_store') or auto-generated.",
+    )
+    registered_url: str | None = Field(
+        default=None,
+        description="Live URL of any merchant website (e.g. https://example.com).",
     )
 
 

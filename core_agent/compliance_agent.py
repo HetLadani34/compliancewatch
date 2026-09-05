@@ -181,8 +181,16 @@ class ComplianceAgent:
         OnboardingResult
             Confirmation payload with merchant_id and baseline metadata.
         """
+        import re
         mock_key = request.mock_site_key
-        baseline_url = f"{self._settings.mock_server_base_url}/merchant/{mock_key}/clean"
+        if not mock_key:
+            clean_name = re.sub(r"[^a-z0-9_]+", "_", request.name.lower()).strip("_")[:30] or "custom_store"
+            mock_key = f"{clean_name}_{uuid.uuid4().hex[:6]}"
+
+        if request.registered_url:
+            baseline_url = request.registered_url
+        else:
+            baseline_url = f"{self._settings.mock_server_base_url}/merchant/{mock_key}/clean"
 
         logger.info(
             "Starting merchant onboarding",
@@ -321,8 +329,13 @@ class ComplianceAgent:
             # Return the last known state without scanning
             return await self._build_skipped_report(merchant)
 
-        current_url = f"{self._settings.mock_server_base_url}/merchant/{mock_site_key}"
-        baseline_url = f"{self._settings.mock_server_base_url}/merchant/{mock_site_key}/clean"
+        if merchant.registered_url and not merchant.registered_url.startswith(self._settings.mock_server_base_url):
+            current_url = merchant.registered_url
+            baseline_url = merchant.registered_url
+        else:
+            current_url = f"{self._settings.mock_server_base_url}/merchant/{mock_site_key}"
+            baseline_url = f"{self._settings.mock_server_base_url}/merchant/{mock_site_key}/clean"
+
         scan_id = str(uuid.uuid4())
 
         logger.info(

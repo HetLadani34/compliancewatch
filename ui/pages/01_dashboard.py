@@ -110,10 +110,10 @@ st.markdown(
 # Control Panel
 # ---------------------------------------------------------------------------
 
-col_ob, col_fraud, col_clean, col_scan, col_refresh = st.columns([2, 2, 2, 2, 1])
+col_ob, col_custom, col_fraud, col_clean, col_scan, col_refresh = st.columns([2, 2, 2, 2, 2, 1])
 
 with col_ob:
-    if st.button("🚀 Onboard Demo Merchants", use_container_width=True):
+    if st.button("🚀 Demo Merchants (3)", use_container_width=True, help="Onboard 3 pre-configured demo stores"):
         with st.spinner("Onboarding 3 demo merchants — scraping baselines & generating embeddings..."):
             result = _api_post("/api/webhooks/demo/onboard-all", timeout=180)
         if result:
@@ -121,6 +121,9 @@ with col_ob:
             if result.get("failed"):
                 st.error(f"Failed: {result['failed']}")
             st.rerun()
+
+with col_custom:
+    show_add_form = st.toggle("➕ Add Merchant", value=False, help="Onboard a custom live merchant website")
 
 with col_fraud:
     if st.button("🔴 Simulate Fraud (All)", use_container_width=True):
@@ -147,6 +150,57 @@ with col_scan:
 
 with col_refresh:
     auto_refresh = st.toggle("Auto", value=False, help="Auto-refresh every 30 seconds")
+
+# ---------------------------------------------------------------------------
+# Add Custom Merchant Form
+# ---------------------------------------------------------------------------
+if show_add_form:
+    with st.expander("➕ **Onboard New Merchant Website**", expanded=True):
+        st.markdown(
+            """
+            <div style="font-size:0.88rem;color:#94a3b8;margin-bottom:0.8rem;">
+                Enter any live merchant website URL. Playwright will capture its initial approved baseline screenshot and compute its semantic embedding for continuous compliance monitoring.
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        c1, c2 = st.columns([2, 1])
+        with c1:
+            custom_name = st.text_input("Merchant / Business Name*", placeholder="e.g. Silk & Stone Jewellers")
+        with c2:
+            custom_cat = st.selectbox(
+                "Business Category*",
+                [
+                    "Apparel & Fashion",
+                    "Food & Beverages",
+                    "Handicrafts & Decor",
+                    "Electronics & Gadgets",
+                    "Health & Wellness",
+                    "Home & Living",
+                    "Other E-Commerce",
+                ],
+            )
+        custom_url = st.text_input(
+            "Merchant Website URL*",
+            placeholder="e.g. https://example.com or http://localhost:8100/merchant/diya_store",
+            help="Live URL to scrape and ingest baseline",
+        )
+
+        if st.button("🚀 Onboard & Capture Baseline", type="primary"):
+            if not custom_name.strip() or not custom_url.strip():
+                st.warning("⚠️ Please provide both Merchant Name and Website URL.")
+            else:
+                with st.spinner(f"Scraping '{custom_url}' and generating baseline vector..."):
+                    payload = {
+                        "name": custom_name.strip(),
+                        "business_category": custom_cat,
+                        "registered_url": custom_url.strip(),
+                    }
+                    res = _api_post("/api/merchants/onboard", json=payload, timeout=120)
+                if res and res.get("merchant_id"):
+                    st.success(f"✅ Merchant '{custom_name}' onboarded successfully! Baseline captured.")
+                    time.sleep(1)
+                    st.rerun()
 
 st.markdown("---")
 
