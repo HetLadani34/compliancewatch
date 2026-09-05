@@ -18,11 +18,13 @@ We use FastAPI's asynccontextmanager lifespan (the modern replacement for
 on_event("startup")) so startup/shutdown logic is co-located and async-safe.
 """
 
-from __future__ import annotations
-
 import asyncio
 import logging
+import sys
 from contextlib import asynccontextmanager
+
+if sys.platform == "win32":
+    asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
 from functools import lru_cache
 from typing import AsyncGenerator
 

@@ -243,7 +243,7 @@ class VectorStoreClient:
             ) from exc
 
         embeddings = result.get("embeddings")
-        if not embeddings or len(embeddings) == 0 or embeddings[0] is None:
+        if embeddings is None or len(embeddings) == 0 or embeddings[0] is None:
             raise VectorStoreError(
                 message=f"No baseline embedding found for merchant '{merchant_id}'. "
                         "Has this merchant been onboarded?",

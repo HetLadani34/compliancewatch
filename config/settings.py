@@ -45,7 +45,7 @@ class AppSettings(BaseSettings):
     # Gemini / AI
     # ------------------------------------------------------------------
     gemini_api_key: str = Field(
-        ...,
+        default=os.environ.get("GEMINI_API_KEY", ""),
         description="Google Gemini API key (free tier). Get one at https://aistudio.google.com/app/apikey",
     )
     gemini_embedding_model: str = Field(

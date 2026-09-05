@@ -39,6 +39,11 @@ import webbrowser
 from dataclasses import dataclass
 from pathlib import Path
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 # ---------------------------------------------------------------------------
 # Colour codes for terminal output
 # ---------------------------------------------------------------------------
@@ -79,6 +84,8 @@ class ServiceConfig:
     startup_delay: float = 2.0      # Seconds to wait after launching before checking health
 
 
+UI_PORT = int(os.environ.get("PORT", "8501"))
+
 SERVICES: list[ServiceConfig] = [
     ServiceConfig(
         name="mock",
@@ -87,11 +94,10 @@ SERVICES: list[ServiceConfig] = [
             "mock_sites.server:app",
             "--host", "0.0.0.0",
             "--port", "8100",
-            "--reload",
             "--log-level", "warning",
         ],
         port=8100,
-        health_url="http://localhost:8100/registry",
+        health_url="http://127.0.0.1:8100/registry",
         startup_delay=3.0,
     ),
     ServiceConfig(
@@ -101,11 +107,10 @@ SERVICES: list[ServiceConfig] = [
             "api.main:app",
             "--host", "0.0.0.0",
             "--port", "8000",
-            "--reload",
             "--log-level", "info",
         ],
         port=8000,
-        health_url="http://localhost:8000/health",
+        health_url="http://127.0.0.1:8000/health",
         startup_delay=4.0,
     ),
     ServiceConfig(
@@ -113,11 +118,14 @@ SERVICES: list[ServiceConfig] = [
         command=[
             PYTHON, "-m", "streamlit",
             "run", "ui/app.py",
-            "--server.port", "8501",
+            "--server.port", str(UI_PORT),
+            "--server.address", "0.0.0.0",
             "--server.headless", "true",
             "--browser.gatherUsageStats", "false",
+            "--server.enableCORS", "false",
+            "--server.enableXsrfProtection", "false",
         ],
-        port=8501,
+        port=UI_PORT,
         health_url=None,  # Streamlit doesn't have a simple JSON health endpoint
         startup_delay=5.0,
     ),
