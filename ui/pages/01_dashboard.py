@@ -191,10 +191,14 @@ if show_add_form:
                 st.warning("⚠️ Please provide both Merchant Name and Website URL.")
             else:
                 with st.spinner(f"Scraping '{custom_url}' and generating baseline vector..."):
+                    import re, uuid
+                    clean_key = re.sub(r"[^a-z0-9_]+", "_", custom_name.strip().lower()).strip("_")[:30] or "custom_store"
+                    mock_key = f"{clean_key}_{uuid.uuid4().hex[:6]}"
                     payload = {
                         "name": custom_name.strip(),
                         "business_category": custom_cat,
                         "registered_url": custom_url.strip(),
+                        "mock_site_key": mock_key,
                     }
                     res = _api_post("/api/merchants/onboard", json=payload, timeout=120)
                 if res and res.get("merchant_id"):
