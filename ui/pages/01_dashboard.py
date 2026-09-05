@@ -239,7 +239,7 @@ else:
     red_c = sum(1 for m in merchants_data if m.get("risk_level") == "RED")
     total_c = len(merchants_data)
 
-    st.markdown(render_summary_bar(green_c, yellow_c, red_c, total_c), unsafe_allow_html=True)
+    st.html(render_summary_bar(green_c, yellow_c, red_c, total_c))
 
     # ---------------------------------------------------------------------------
     # Sort: RED first, then YELLOW, then GREEN, then UNSCANNED
@@ -266,7 +266,7 @@ else:
                 vision_triggered=merchant.get("vision_triggered", False)
                     if merchant.get("last_scanned_at") else False,
             )
-            st.markdown(card_html, unsafe_allow_html=True)
+            st.html(card_html)
 
             # Detail view button
             risk = merchant.get("risk_level", "UNSCANNED")

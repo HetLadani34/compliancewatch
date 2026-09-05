@@ -115,43 +115,19 @@ with col_back:
     if st.button("← Back"):
         st.switch_page("pages/01_dashboard.py")
 
-st.markdown(
-    f"""
-    <div style="
-        background:linear-gradient(135deg,{colours['bg']},{colours['bg']});
-        border:1.5px solid {colours['border']};
-        border-radius:16px;
-        padding:1.5rem 2rem;
-        margin-bottom:1.5rem;
-        display:flex;
-        align-items:center;
-        gap:1.5rem;
-        box-shadow:0 0 30px {colours['glow']};
-    ">
-        <div style="font-size:3.5rem;">{colours['emoji']}</div>
-        <div>
-            <div style="font-size:1.8rem;font-weight:900;color:{colours['text']};">
-                {merchant['name']}
-            </div>
-            <div style="display:flex;gap:1rem;margin-top:0.3rem;flex-wrap:wrap;">
-                <span style="background:{colours['badge_bg']};color:{colours['badge_text']};
-                border-radius:6px;padding:2px 10px;font-size:0.75rem;font-weight:700;">
-                    {colours['label']}
-                </span>
-                <span style="color:#64748b;font-size:0.82rem;">
-                    📂 {merchant.get('business_category','—')}
-                </span>
-                <span style="color:#64748b;font-size:0.82rem;">
-                    🔑 <code>{merchant.get('mock_site_key','—')}</code>
-                </span>
-                <span style="color:#64748b;font-size:0.82rem;">
-                    🏦 Account: <strong>{account_status}</strong>
-                </span>
-            </div>
-        </div>
-    </div>
-    """,
-    unsafe_allow_html=True,
+st.html(
+    f'<div style="background:linear-gradient(135deg,{colours["bg"]},{colours["bg"]});border:1.5px solid {colours["border"]};border-radius:16px;padding:1.5rem 2rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:1.5rem;box-shadow:0 0 30px {colours["glow"]};">'
+    f'<div style="font-size:3.5rem;">{colours["emoji"]}</div>'
+    f'<div>'
+    f'<div style="font-size:1.8rem;font-weight:900;color:{colours["text"]};">{merchant["name"]}</div>'
+    f'<div style="display:flex;gap:1rem;margin-top:0.3rem;flex-wrap:wrap;">'
+    f'<span style="background:{colours["badge_bg"]};color:{colours["badge_text"]};border-radius:6px;padding:2px 10px;font-size:0.75rem;font-weight:700;">{colours["label"]}</span>'
+    f'<span style="color:#64748b;font-size:0.82rem;">📂 {merchant.get("business_category","—")}</span>'
+    f'<span style="color:#64748b;font-size:0.82rem;">🔑 <code>{merchant.get("mock_site_key","—")}</code></span>'
+    f'<span style="color:#64748b;font-size:0.82rem;">🏦 Account: <strong>{account_status}</strong></span>'
+    f'</div>'
+    f'</div>'
+    f'</div>'
 )
 
 # ---------------------------------------------------------------------------
