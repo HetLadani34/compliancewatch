@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PureLeaf Organic Tea — Premium Wellness Teas & Herbal Infusions</title>
+  <meta name="description" content="Discover PureLeaf's premium organic teas, herbal infusions, and wellness blends sourced directly from Darjeeling and Assam tea gardens. No additives, pure goodness."/>
+  <style>
+    :root {
+      --green-deep: #1a5e3a;
+      --green-mid: #2d8653;
+      --green-light: #4aad78;
+      --cream: #faf8f2;
+      --warm-tan: #f0ead6;
+      --text-dark: #1c2b1e;
+      --text-muted: #5a7563;
+      --border: #d4e6d9;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Georgia', 'Segoe UI', serif; background: var(--cream); color: var(--text-dark); }
+
+    nav { background: var(--green-deep); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    nav .logo { color: #fff; font-size: 1.4rem; font-weight: 700; letter-spacing: 0.5px; }
+    nav .logo .leaf { color: #7defa1; }
+    nav ul { list-style: none; display: flex; gap: 1.5rem; }
+    nav ul li a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.88rem; font-family: 'Segoe UI', sans-serif; }
+    nav ul li a:hover { color: #7defa1; }
+
+    .hero { background: linear-gradient(160deg, #1a5e3a 0%, #2d8653 55%, #4aad78 100%); color: #fff; padding: 6rem 2rem; text-align: center; position: relative; overflow: hidden; }
+    .hero::after { content: '🍃'; font-size: 20rem; opacity: 0.06; position: absolute; top: -3rem; left: -2rem; pointer-events: none; }
+    .hero .origin-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4); border-radius: 20px; padding: 0.3rem 1rem; font-size: 0.8rem; font-family: 'Segoe UI', sans-serif; margin-bottom: 1rem; }
+    .hero h1 { font-size: 3.2rem; font-weight: 800; line-height: 1.1; }
+    .hero p { max-width: 600px; margin: 1.2rem auto; font-size: 1.1rem; line-height: 1.7; opacity: 0.9; font-family: 'Segoe UI', sans-serif; }
+    .hero-cta { display: inline-block; margin-top: 2rem; background: #fff; color: var(--green-deep); font-weight: 700; padding: 0.9rem 2.8rem; border-radius: 50px; font-size: 1rem; text-decoration: none; font-family: 'Segoe UI', sans-serif; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+
+    .features-bar { background: var(--warm-tan); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.2rem 2rem; display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; }
+    .feature-item { text-align: center; font-family: 'Segoe UI', sans-serif; }
+    .feature-icon { font-size: 1.6rem; }
+    .feature-label { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+    .section { max-width: 1100px; margin: 3.5rem auto; padding: 0 1.5rem; }
+    .section-header { margin-bottom: 2rem; }
+    .section-title { font-size: 2rem; font-weight: 700; color: var(--green-deep); }
+    .section-sub { font-size: 0.92rem; color: var(--text-muted); font-family: 'Segoe UI', sans-serif; margin-top: 0.2rem; }
+
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
+    .product-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; }
+    .product-card:hover { box-shadow: 0 10px 35px rgba(45,134,83,0.12); transform: translateY(-4px); }
+    .product-img { height: 175px; display: flex; align-items: center; justify-content: center; font-size: 5rem; }
+    .product-info { padding: 1.1rem; }
+    .origin-chip { display: inline-block; background: rgba(26,94,58,0.1); color: var(--green-mid); border-radius: 12px; padding: 0.15rem 0.6rem; font-size: 0.7rem; font-family: 'Segoe UI', sans-serif; font-weight: 600; margin-bottom: 0.4rem; }
+    .product-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .product-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; font-family: 'Segoe UI', sans-serif; margin-bottom: 0.75rem; }
+    .product-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.75rem; }
+    .tag { background: var(--warm-tan); color: var(--text-muted); font-size: 0.65rem; padding: 0.15rem 0.5rem; border-radius: 6px; font-family: 'Segoe UI', sans-serif; }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; }
+    .product-price { font-size: 1.2rem; font-weight: 800; color: var(--green-deep); }
+    .product-price .original { text-decoration: line-through; color: #aaa; font-size: 0.82rem; font-weight: 400; margin-left: 0.4rem; }
+    .buy-btn { background: var(--green-mid); color: #fff; border: none; padding: 0.5rem 1.2rem; border-radius: 8px; font-size: 0.82rem; cursor: pointer; font-weight: 700; font-family: 'Segoe UI', sans-serif; }
+    .buy-btn:hover { background: var(--green-deep); }
+
+    .wellness-banner { background: linear-gradient(135deg, #f0ead6, #e8f5ec); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; display: flex; align-items: center; gap: 3rem; margin: 2rem 0; flex-wrap: wrap; }
+    .wellness-text h3 { font-size: 1.5rem; color: var(--green-deep); margin-bottom: 0.5rem; }
+    .wellness-text p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; max-width: 500px; font-family: 'Segoe UI', sans-serif; }
+    .wellness-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; min-width: 220px; }
+    .stat { text-align: center; }
+    .stat-val { font-size: 2rem; font-weight: 900; color: var(--green-mid); }
+    .stat-label { font-size: 0.72rem; color: var(--text-muted); font-family: 'Segoe UI', sans-serif; }
+
+    footer { background: var(--green-deep); color: rgba(255,255,255,0.75); text-align: center; padding: 2rem; font-size: 0.82rem; margin-top: 4rem; font-family: 'Segoe UI', sans-serif; }
+    footer strong { color: #7defa1; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Pure<span class="leaf">Leaf</span> 🍃</div>
+  <ul>
+    <li><a href="#">Green Teas</a></li>
+    <li><a href="#">Herbal Blends</a></li>
+    <li><a href="#">Chai & Masala</a></li>
+    <li><a href="#">Wellness Kits</a></li>
+    <li><a href="#">Subscriptions</a></li>
+    <li><a href="#">Blog</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="origin-badge">🏔️ Sourced from Darjeeling & Assam Gardens</div>
+  <h1>Wellness in Every Sip</h1>
+  <p>Premium single-origin organic teas, ayurvedic herbal infusions, and functional wellness blends. No artificial flavours, no additives — just pure nature.</p>
+  <a href="#" class="hero-cta">🍵 Explore Our Collection</a>
+</section>
+
+<div class="features-bar">
+  <div class="feature-item"><div class="feature-icon">🌿</div><div class="feature-label">100% Organic<br>USDA Certified</div></div>
+  <div class="feature-item"><div class="feature-icon">🏔️</div><div class="feature-label">Single Origin<br>Darjeeling &amp; Assam</div></div>
+  <div class="feature-item"><div class="feature-icon">📦</div><div class="feature-label">Biodegradable<br>Packaging</div></div>
+  <div class="feature-item"><div class="feature-icon">🚚</div><div class="feature-label">Free Delivery<br>above ₹599</div></div>
+  <div class="feature-item"><div class="feature-icon">♻️</div><div class="feature-label">Zero Waste<br>Commitment</div></div>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-title">🌿 Featured Teas</div>
+    <div class="section-sub">Handpicked from the finest estates — limited seasonal lots</div>
+  </div>
+  <div class="product-grid">
+
+    <div class="product-card">
+      <div class="product-img" style="background: linear-gradient(135deg, #e8f5ec, #c8e6c9);">🍵</div>
+      <div class="product-info">
+        <span class="origin-chip">Darjeeling First Flush</span>
+        <div class="product-name">Muscatel Spring Harvest Green Tea</div>
+        <div class="product-tags">
+          <span class="tag">Antioxidant</span><span class="tag">Low Caffeine</span><span class="tag">Loose Leaf</span>
+        </div>
+        <div class="product-desc">Delicate, floral first flush with a distinctive muscatel character. Hand-rolled leaves, 2025 spring harvest. 50g tin.</div>
+        <div class="product-footer">
+          <div class="product-price">₹649 <span class="original">₹849</span></div>
+          <button class="buy-btn">Buy</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img" style="background: linear-gradient(135deg, #fff8e1, #ffecb3);">☕</div>
+      <div class="product-info">
+        <span class="origin-chip">Assam CTC</span>
+        <div class="product-name">Bold Breakfast Assam Blend</div>
+        <div class="product-tags">
+          <span class="tag">Strong Brew</span><span class="tag">Malty</span><span class="tag">Milk Tea</span>
+        </div>
+        <div class="product-desc">Rich, malty Assam CTC perfect for chai. Full-bodied and brisk. Pairs beautifully with milk. 250g resealable pouch.</div>
+        <div class="product-footer">
+          <div class="product-price">₹349 <span class="original">₹499</span></div>
+          <button class="buy-btn">Buy</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img" style="background: linear-gradient(135deg, #fce4ec, #f8bbd9);">🌸</div>
+      <div class="product-info">
+        <span class="origin-chip">Herbal Blend</span>
+        <div class="product-name">Hibiscus Rose Wellness Tisane</div>
+        <div class="product-tags">
+          <span class="tag">Caffeine Free</span><span class="tag">Immunity</span><span class="tag">Vitamin C</span>
+        </div>
+        <div class="product-desc">Vibrant hibiscus, dried rose petals, and rosehip. Naturally caffeine-free. Rich in antioxidants. 20 pyramid bags.</div>
+        <div class="product-footer">
+          <div class="product-price">₹449 <span class="original">₹599</span></div>
+          <button class="buy-btn">Buy</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img" style="background: linear-gradient(135deg, #e8f5ec, #dcedc8);">🌿</div>
+      <div class="product-info">
+        <span class="origin-chip">Ayurvedic</span>
+        <div class="product-name">Tulsi Ginger Immunity Blend</div>
+        <div class="product-tags">
+          <span class="tag">Adaptogen</span><span class="tag">Anti-inflammatory</span><span class="tag">Organic</span>
+        </div>
+        <div class="product-desc">Holy basil (Tulsi), fresh ginger, black pepper, and cardamom. An ancient Ayurvedic formula for daily immunity. 100g.</div>
+        <div class="product-footer">
+          <div class="product-price">₹399 <span class="original">₹549</span></div>
+          <button class="buy-btn">Buy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="wellness-banner">
+    <div class="wellness-text">
+      <h3>🌱 Why PureLeaf?</h3>
+      <p>We work directly with 47 certified organic farms across the Darjeeling and Assam tea belts, eliminating middlemen. Every batch is third-party tested for pesticide residues, heavy metals, and microbiological safety before it reaches you.</p>
+    </div>
+    <div class="wellness-stats">
+      <div class="stat"><div class="stat-val">47</div><div class="stat-label">Partner Farms</div></div>
+      <div class="stat"><div class="stat-val">100%</div><div class="stat-label">Organic Certified</div></div>
+      <div class="stat"><div class="stat-val">28K+</div><div class="stat-label">Happy Customers</div></div>
+      <div class="stat"><div class="stat-val">0</div><div class="stat-label">Synthetic Additives</div></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <strong>PureLeaf Organic Tea Co.</strong><br>
+  Kolkata, West Bengal · FSSAI: 10020042001234 · Organic India Certified<br>
+  <span style="margin-top:0.5rem;display:inline-block;">Secure payments via Razorpay 🔐</span>
+</footer>
+
+</body>
+</html>

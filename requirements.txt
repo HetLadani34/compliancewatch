@@ -1,0 +1,42 @@
+# ==============================================================
+# ComplianceWatch — Python Dependencies
+# ==============================================================
+
+# --- Web Frameworks ---
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+
+# --- LLM & AI (Google Gemini) ---
+google-generativeai>=0.8.0
+
+# --- Vector Database ---
+chromadb>=0.5.15
+
+# --- Relational Database ---
+sqlalchemy>=2.0.36
+aiosqlite>=0.20.0
+
+# --- Browser Automation & Scraping ---
+playwright>=1.47.0
+
+# --- Frontend Dashboard ---
+streamlit>=1.38.0
+
+# --- Data Validation & Settings ---
+pydantic>=2.9.0
+pydantic-settings>=2.5.0
+
+# --- Utilities ---
+python-dotenv>=1.0.1
+numpy>=1.26.0
+httpx>=0.27.0
+Pillow>=10.4.0
+jinja2>=3.1.4
+python-multipart>=0.0.9
+
+# --- Async & HTTP ---
+anyio>=4.6.0
+requests>=2.32.0
+
+# --- APScheduler for background cron ---
+apscheduler>=3.10.4

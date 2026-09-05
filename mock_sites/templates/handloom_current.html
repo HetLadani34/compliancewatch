@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weave & Wonder — Authentic Handloom Sarees & Fabrics</title>
+  <meta name="description" content="Discover authentic handloom sarees, silks, and fabrics from master weavers of Varanasi, Kanchipuram, and Chanderi. Now featuring our new Ikat collection."/>
+  <style>
+    :root {
+      --burgundy: #7b1c3a;
+      --rose-gold: #b76e79;
+      --champagne: #f5e6d3;
+      --cream: #fdfaf5;
+      --dark: #2c1a1f;
+      --muted: #7a5c60;
+      --border: #e8d5c4;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Georgia', serif; background: var(--cream); color: var(--dark); }
+
+    nav { background: var(--burgundy); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    nav .logo { color: #fff; font-size: 1.35rem; font-weight: 700; }
+    nav .logo .amp { color: var(--champagne); }
+    nav ul { list-style: none; display: flex; gap: 1.5rem; }
+    nav ul li a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.87rem; font-family: 'Segoe UI', sans-serif; }
+    nav ul li a:hover { color: var(--champagne); }
+
+    .hero { background: linear-gradient(160deg, #7b1c3a 0%, #a02854 50%, #b76e79 100%); color: #fff; padding: 5.5rem 2rem; text-align: center; }
+    .hero .gi-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4); border-radius: 20px; padding: 0.3rem 1rem; font-size: 0.78rem; font-family: 'Segoe UI', sans-serif; margin-bottom: 1rem; }
+    .hero h1 { font-size: 3rem; font-weight: 800; line-height: 1.15; }
+    .hero p { font-size: 1.05rem; opacity: 0.9; max-width: 600px; margin: 1rem auto; line-height: 1.7; font-family: 'Segoe UI', sans-serif; }
+    .hero-cta { display: inline-block; margin-top: 2rem; background: #fff; color: var(--burgundy); font-weight: 700; padding: 0.85rem 2.5rem; border-radius: 50px; font-size: 0.95rem; font-family: 'Segoe UI', sans-serif; text-decoration: none; }
+
+    .trust-bar { background: var(--champagne); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.2rem 2rem; display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; }
+    .trust-item { text-align: center; font-family: 'Segoe UI', sans-serif; }
+    .trust-icon { font-size: 1.5rem; }
+    .trust-label { font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem; }
+
+    .section { max-width: 1100px; margin: 3.5rem auto; padding: 0 1.5rem; }
+    .section-title { font-size: 1.8rem; font-weight: 700; color: var(--burgundy); margin-bottom: 0.2rem; }
+    .section-sub { font-size: 0.88rem; color: var(--muted); margin-bottom: 2rem; font-family: 'Segoe UI', sans-serif; }
+
+    .new-banner { background: linear-gradient(135deg, #7b1c3a, #a02854); color: #fff; border-radius: 12px; padding: 1rem 1.5rem; display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; font-family: 'Segoe UI', sans-serif; }
+    .new-banner .icon { font-size: 1.8rem; }
+    .new-banner strong { font-size: 1rem; }
+    .new-banner span { font-size: 0.85rem; opacity: 0.85; }
+
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(245px, 1fr)); gap: 1.5rem; }
+    .product-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; }
+    .product-card:hover { box-shadow: 0 10px 35px rgba(123,28,58,0.12); transform: translateY(-4px); }
+    .product-img { height: 185px; display: flex; align-items: center; justify-content: center; font-size: 5.5rem; }
+    .product-info { padding: 1.1rem; }
+    .weave-chip { display: inline-block; background: rgba(123,28,58,0.1); color: var(--burgundy); border-radius: 10px; padding: 0.15rem 0.65rem; font-size: 0.7rem; font-family: 'Segoe UI', sans-serif; font-weight: 600; margin-bottom: 0.4rem; }
+    .product-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .product-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; font-family: 'Segoe UI', sans-serif; margin-bottom: 0.75rem; }
+    .product-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+    .meta-chip { background: var(--champagne); color: var(--muted); font-size: 0.65rem; padding: 0.15rem 0.5rem; border-radius: 6px; font-family: 'Segoe UI', sans-serif; }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; }
+    .product-price { font-size: 1.15rem; font-weight: 800; color: var(--burgundy); }
+    .product-price .original { text-decoration: line-through; color: #bbb; font-size: 0.82rem; font-weight: 400; margin-left: 0.4rem; }
+    .buy-btn { background: var(--burgundy); color: #fff; border: none; padding: 0.5rem 1.2rem; border-radius: 8px; font-size: 0.82rem; cursor: pointer; font-weight: 700; font-family: 'Segoe UI', sans-serif; }
+    .buy-btn:hover { background: #5c1528; }
+
+    footer { background: var(--dark); color: rgba(255,255,255,0.65); text-align: center; padding: 2rem; font-size: 0.82rem; font-family: 'Segoe UI', sans-serif; margin-top: 4rem; }
+    footer strong { color: var(--rose-gold); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Weave <span class="amp">&</span> Wonder</div>
+  <ul>
+    <li><a href="#">Sarees</a></li>
+    <li><a href="#">Dupattas</a></li>
+    <li><a href="#">Fabrics by Metre</a></li>
+    <li><a href="#">Bridal Collection</a></li>
+    <li><a href="#">New: Ikat</a></li>
+    <li><a href="#">Care Guide</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="gi-badge">🏛️ GI-Tagged Weaves · Now featuring Ikat Collection</div>
+  <h1>Threads of Tradition,<br>A New Chapter</h1>
+  <p>Authentic handloom sarees and fabrics from Varanasi, Kanchipuram, and Chanderi — now expanded with Odisha Ikat and Pochampally double-Ikat sarees.</p>
+  <a href="#" class="hero-cta">🧵 Explore the New Ikat Collection</a>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-item"><div class="trust-icon">🏛️</div><div class="trust-label">GI-Tagged<br>& Certified</div></div>
+  <div class="trust-item"><div class="trust-icon">🧵</div><div class="trust-label">100% Handwoven<br>No Power Looms</div></div>
+  <div class="trust-item"><div class="trust-icon">✨</div><div class="trust-label">New: Ikat<br>Collection</div></div>
+  <div class="trust-item"><div class="trust-icon">🚚</div><div class="trust-label">Free Delivery<br>Nationwide</div></div>
+  <div class="trust-item"><div class="trust-icon">↩️</div><div class="trust-label">15-Day Easy<br>Exchange</div></div>
+</div>
+
+<div class="section">
+  <div class="new-banner">
+    <div class="icon">🆕</div>
+    <div>
+      <strong>Introducing: Odisha & Pochampally Ikat Sarees</strong><br>
+      <span>Double-Ikat resist-dyed sarees — a UNESCO-recognised craft. Limited edition launch. Pre-order now.</span>
+    </div>
+  </div>
+
+  <div class="section-title">🥻 Our Full Collection</div>
+  <div class="section-sub">Signature handlooms plus our new Ikat arrivals</div>
+  <div class="product-grid">
+
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#fdebd0,#f5cba7);">🥻</div>
+      <div class="product-info">
+        <span class="weave-chip">Banarasi Silk · Varanasi</span>
+        <div class="product-name">Kadwa Zari Banarasi Silk Saree</div>
+        <div class="product-meta"><span class="meta-chip">Pure Zari</span><span class="meta-chip">6 Metres</span><span class="meta-chip">GI Tagged</span></div>
+        <div class="product-desc">Exquisite red-and-gold Banarasi with traditional kadwa weave. Hand-woven over 15 days by master weavers. Blouse included.</div>
+        <div class="product-footer">
+          <div class="product-price">₹18,500 <span class="original">₹24,000</span></div>
+          <button class="buy-btn">Buy</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#e8f4ea,#c5e0c8);">🌿</div>
+      <div class="product-info">
+        <span class="weave-chip">Odisha Ikat · Cuttack ✨ New</span>
+        <div class="product-name">Double Ikat Pattachitra Saree</div>
+        <div class="product-meta"><span class="meta-chip">Double Ikat</span><span class="meta-chip">Natural Dyes</span><span class="meta-chip">UNESCO Craft</span></div>
+        <div class="product-desc">Intricate tie-and-dye Ikat patterns inspired by Pattachitra art. Each saree takes 3 weeks of meticulous dyeing and weaving work.</div>
+        <div class="product-footer">
+          <div class="product-price">₹8,500 <span class="original">₹11,000</span></div>
+          <button class="buy-btn">Buy</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#f9e4e8,#f7cdd5);">🌺</div>
+      <div class="product-info">
+        <span class="weave-chip">Kanchipuram Silk · Tamil Nadu</span>
+        <div class="product-name">Temple Border Kanjivaram Silk</div>
+        <div class="product-meta"><span class="meta-chip">Mulberry Silk</span><span class="meta-chip">Contrast Border</span><span class="meta-chip">GI Tagged</span></div>
+        <div class="product-desc">Classic peacock-green Kanjivaram with deep maroon temple border. 100% mulberry silk, natural dyes, handwoven on traditional pit loom.</div>
+        <div class="product-footer">
+          <div class="product-price">₹22,000 <span class="original">₹28,000</span></div>
+          <button class="buy-btn">Buy</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#fdf3e0,#f9e2b0);">🌟</div>
+      <div class="product-info">
+        <span class="weave-chip">Pochampally Ikat · Telangana ✨ New</span>
+        <div class="product-name">Pochampally Geometric Double Ikat</div>
+        <div class="product-meta"><span class="meta-chip">Silk-Cotton</span><span class="meta-chip">Geometric</span><span class="meta-chip">GI Tagged</span></div>
+        <div class="product-desc">Telangana's celebrated double-Ikat weave in bold geometric patterns. A true collector's piece, hand-finished with a contrasting pallu.</div>
+        <div class="product-footer">
+          <div class="product-price">₹6,200 <span class="original">₹8,000</span></div>
+          <button class="buy-btn">Buy</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <strong>Weave & Wonder Handlooms</strong><br>
+  Supporting India's handloom heritage since 2018 · MSME Registered · Varanasi, UP<br>
+  <span style="margin-top:0.5rem;display:inline-block;">🔐 Secure payments via Razorpay</span>
+</footer>
+
+</body>
+</html>

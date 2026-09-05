@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CryptoBet Pro — Trade Bitcoin, Ethereum & Bet on Sports</title>
+  <meta name="description" content="India's fastest crypto trading and sports betting platform. Trade BTC, ETH, BNB, SOL. Place live bets on cricket, football, casino games. Instant withdrawals."/>
+  <style>
+    :root {
+      --gold: #f59e0b;
+      --gold-dark: #d97706;
+      --bg: #0b0f1a;
+      --card: #111827;
+      --card2: #1a2438;
+      --border: #1e2d40;
+      --text: #e2e8f0;
+      --muted: #6b8097;
+      --green: #10b981;
+      --red: #ef4444;
+      --blue: #3b82f6;
+      --purple: #8b5cf6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); }
+
+    nav { background: rgba(11,15,26,0.95); backdrop-filter: blur(10px); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .logo { font-size: 1.5rem; font-weight: 900; }
+    .logo .crypto { color: var(--gold); }
+    .logo .bet { color: var(--purple); }
+    nav ul { list-style: none; display: flex; gap: 1.5rem; }
+    nav ul li a { color: var(--muted); text-decoration: none; font-size: 0.85rem; }
+    nav ul li a:hover { color: var(--gold); }
+    .nav-btns { display: flex; gap: 0.75rem; }
+    .btn-login { border: 1px solid var(--border); color: var(--text); padding: 0.45rem 1.2rem; border-radius: 6px; font-size: 0.85rem; text-decoration: none; }
+    .btn-register { background: var(--gold); color: #000; font-weight: 700; padding: 0.45rem 1.2rem; border-radius: 6px; font-size: 0.85rem; text-decoration: none; }
+
+    .hero { background: linear-gradient(135deg, #0b0f1a 0%, #111827 50%, #13202f 100%); padding: 5rem 2rem; text-align: center; border-bottom: 1px solid var(--border); }
+    .hero-pills { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .hero-pill { background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.4); color: var(--gold); border-radius: 20px; padding: 0.25rem 0.8rem; font-size: 0.75rem; font-weight: 600; }
+    .hero h1 { font-size: 3.5rem; font-weight: 900; line-height: 1.1; }
+    .hero h1 .highlight { background: linear-gradient(90deg, var(--gold), #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { color: var(--muted); max-width: 600px; margin: 1rem auto; font-size: 1.1rem; line-height: 1.6; }
+    .hero-stats { display: flex; gap: 3rem; justify-content: center; margin: 2.5rem 0; flex-wrap: wrap; }
+    .hstat-val { font-size: 1.8rem; font-weight: 900; color: var(--gold); }
+    .hstat-label { font-size: 0.75rem; color: var(--muted); }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; }
+    .btn-gold { background: linear-gradient(90deg, var(--gold), var(--gold-dark)); color: #000; font-weight: 800; padding: 0.9rem 2.5rem; border-radius: 8px; font-size: 1rem; text-decoration: none; }
+    .btn-ghost { border: 1px solid var(--gold); color: var(--gold); font-weight: 700; padding: 0.9rem 2.5rem; border-radius: 8px; font-size: 1rem; text-decoration: none; }
+
+    .ticker { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 0.8rem 2rem; display: flex; gap: 3rem; overflow-x: auto; }
+    .ticker-item { display: flex; gap: 0.5rem; align-items: center; white-space: nowrap; font-size: 0.85rem; }
+    .ticker-symbol { font-weight: 700; color: var(--text); }
+    .ticker-price { color: var(--text); }
+    .ticker-change.up { color: var(--green); }
+    .ticker-change.down { color: var(--red); }
+
+    .section { max-width: 1200px; margin: 3rem auto; padding: 0 1.5rem; }
+    .section-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.25rem; }
+    .section-sub { color: var(--muted); font-size: 0.88rem; margin-bottom: 2rem; }
+
+    .crypto-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+    .crypto-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; transition: border-color 0.2s, transform 0.2s; }
+    .crypto-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+    .coin-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+    .coin-icon { font-size: 2rem; }
+    .coin-name { font-weight: 700; font-size: 1rem; }
+    .coin-ticker { color: var(--muted); font-size: 0.78rem; }
+    .coin-price { font-size: 1.4rem; font-weight: 900; margin-bottom: 0.25rem; }
+    .coin-change { font-size: 0.85rem; font-weight: 700; }
+    .coin-change.up { color: var(--green); }
+    .coin-change.down { color: var(--red); }
+    .trade-btn { display: block; width: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-dark)); color: #000; border: none; padding: 0.6rem; border-radius: 6px; font-weight: 800; font-size: 0.88rem; margin-top: 1rem; cursor: pointer; }
+
+    .betting-section { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; margin: 2rem 0; }
+    .betting-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .bet-tab { background: var(--card2); border: 1px solid var(--border); color: var(--muted); padding: 0.5rem 1.2rem; border-radius: 6px; font-size: 0.85rem; cursor: pointer; }
+    .bet-tab.active { background: var(--purple); border-color: var(--purple); color: #fff; font-weight: 700; }
+    .match-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
+    .match-card { background: var(--card2); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; }
+    .match-league { font-size: 0.7rem; color: var(--gold); font-weight: 600; margin-bottom: 0.5rem; text-transform: uppercase; }
+    .match-teams { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .match-time { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.75rem; }
+    .odds-row { display: flex; gap: 0.5rem; }
+    .odds-btn { flex: 1; background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); border-radius: 6px; padding: 0.5rem; text-align: center; cursor: pointer; }
+    .odds-label { font-size: 0.65rem; color: var(--muted); }
+    .odds-val { font-size: 0.9rem; font-weight: 800; color: var(--purple); }
+    .odds-btn:hover { background: rgba(139,92,246,0.3); }
+
+    .casino-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
+    .casino-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; cursor: pointer; transition: transform 0.2s; }
+    .casino-card:hover { transform: scale(1.04); }
+    .casino-img { height: 100px; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; }
+    .casino-name { padding: 0.6rem; font-size: 0.8rem; font-weight: 700; text-align: center; }
+
+    .bonus-banner { background: linear-gradient(135deg, #1a0f3a, #2a1555); border: 1px solid rgba(139,92,246,0.3); border-radius: 14px; padding: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; margin: 2rem 0; }
+    .bonus-text h3 { font-size: 1.8rem; color: var(--gold); font-weight: 900; }
+    .bonus-text p { color: var(--muted); font-size: 0.9rem; margin-top: 0.4rem; }
+    .claim-btn { background: linear-gradient(90deg, var(--purple), #6d28d9); color: #fff; border: none; padding: 0.9rem 2.5rem; border-radius: 8px; font-weight: 800; font-size: 1rem; cursor: pointer; white-space: nowrap; }
+
+    footer { background: #070b14; border-top: 1px solid var(--border); padding: 2rem; text-align: center; font-size: 0.78rem; color: var(--muted); margin-top: 3rem; }
+    footer .disclaimer { max-width: 700px; margin: 0.75rem auto 0; color: #444; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><span class="crypto">Crypto</span><span class="bet">Bet</span> Pro</div>
+  <ul>
+    <li><a href="#">Trade</a></li>
+    <li><a href="#">Sports Betting</a></li>
+    <li><a href="#">Live Casino</a></li>
+    <li><a href="#">Crypto Earn</a></li>
+    <li><a href="#">Referrals</a></li>
+  </ul>
+  <div class="nav-btns">
+    <a href="#" class="btn-login">Log In</a>
+    <a href="#" class="btn-register">Sign Up — Get ₹5000</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-pills">
+    <span class="hero-pill">₿ Crypto Trading</span>
+    <span class="hero-pill">🏏 Sports Betting</span>
+    <span class="hero-pill">🎰 Live Casino</span>
+    <span class="hero-pill">💰 0% Commission</span>
+  </div>
+  <h1>Trade Crypto &amp; Bet on<br><span class="highlight">Everything You Love</span></h1>
+  <p>India's most trusted platform for Bitcoin trading, cricket betting, and live casino games. 500K+ active users. Instant INR withdrawals.</p>
+  <div class="hero-stats">
+    <div><div class="hstat-val">₹2.4Cr+</div><div class="hstat-label">Daily Volume</div></div>
+    <div><div class="hstat-val">500K+</div><div class="hstat-label">Active Traders</div></div>
+    <div><div class="hstat-val">200+</div><div class="hstat-label">Crypto Pairs</div></div>
+    <div><div class="hstat-val">99.9%</div><div class="hstat-label">Uptime</div></div>
+  </div>
+  <div class="hero-btns">
+    <a href="#" class="btn-gold">Start Trading Now</a>
+    <a href="#" class="btn-ghost">📋 View Markets</a>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-item"><span class="ticker-symbol">BTC/INR</span><span class="ticker-price">₹58,42,000</span><span class="ticker-change up">▲ +3.21%</span></div>
+  <div class="ticker-item"><span class="ticker-symbol">ETH/INR</span><span class="ticker-price">₹3,10,500</span><span class="ticker-change up">▲ +1.84%</span></div>
+  <div class="ticker-item"><span class="ticker-symbol">BNB/INR</span><span class="ticker-price">₹49,200</span><span class="ticker-change down">▼ -0.55%</span></div>
+  <div class="ticker-item"><span class="ticker-symbol">SOL/INR</span><span class="ticker-price">₹14,800</span><span class="ticker-change up">▲ +5.12%</span></div>
+  <div class="ticker-item"><span class="ticker-symbol">XRP/INR</span><span class="ticker-price">₹510</span><span class="ticker-change up">▲ +2.30%</span></div>
+  <div class="ticker-item"><span class="ticker-symbol">DOGE/INR</span><span class="ticker-price">₹14.2</span><span class="ticker-change down">▼ -1.10%</span></div>
+  <div class="ticker-item"><span class="ticker-symbol">MATIC/INR</span><span class="ticker-price">₹72.4</span><span class="ticker-change up">▲ +4.60%</span></div>
+</div>
+
+<div class="section">
+  <div class="section-title">₿ Top Crypto Markets</div>
+  <div class="section-sub">Trade Bitcoin, Ethereum, and 200+ altcoins with 10x leverage</div>
+  <div class="crypto-grid">
+    <div class="crypto-card">
+      <div class="coin-header"><div class="coin-icon">₿</div><div><div class="coin-name">Bitcoin</div><div class="coin-ticker">BTC/INR</div></div></div>
+      <div class="coin-price">₹58,42,000</div>
+      <div class="coin-change up">▲ +3.21% (24h)</div>
+      <button class="trade-btn">Trade BTC</button>
+    </div>
+    <div class="crypto-card">
+      <div class="coin-header"><div class="coin-icon">Ξ</div><div><div class="coin-name">Ethereum</div><div class="coin-ticker">ETH/INR</div></div></div>
+      <div class="coin-price">₹3,10,500</div>
+      <div class="coin-change up">▲ +1.84% (24h)</div>
+      <button class="trade-btn">Trade ETH</button>
+    </div>
+    <div class="crypto-card">
+      <div class="coin-header"><div class="coin-icon">🟡</div><div><div class="coin-name">BNB</div><div class="coin-ticker">BNB/INR</div></div></div>
+      <div class="coin-price">₹49,200</div>
+      <div class="coin-change down">▼ -0.55% (24h)</div>
+      <button class="trade-btn">Trade BNB</button>
+    </div>
+    <div class="crypto-card">
+      <div class="coin-header"><div class="coin-icon">◎</div><div><div class="coin-name">Solana</div><div class="coin-ticker">SOL/INR</div></div></div>
+      <div class="coin-price">₹14,800</div>
+      <div class="coin-change up">▲ +5.12% (24h)</div>
+      <button class="trade-btn">Trade SOL</button>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="betting-section">
+    <div class="section-title">🏏 Sports Betting — Live Odds</div>
+    <div class="section-sub">Bet on cricket, football, kabaddi, and 30+ sports in real time</div>
+    <div class="betting-tabs">
+      <span class="bet-tab active">🏏 Cricket</span>
+      <span class="bet-tab">⚽ Football</span>
+      <span class="bet-tab">🎾 Tennis</span>
+      <span class="bet-tab">🏑 Kabaddi</span>
+      <span class="bet-tab">🏀 Basketball</span>
+    </div>
+    <div class="match-grid">
+      <div class="match-card">
+        <div class="match-league">🏆 IPL 2025 — Live</div>
+        <div class="match-teams">Mumbai Indians vs Chennai Super Kings</div>
+        <div class="match-time">🔴 Live · 14.2 Overs · MI: 112/3</div>
+        <div class="odds-row">
+          <div class="odds-btn"><div class="odds-label">MI Win</div><div class="odds-val">1.75</div></div>
+          <div class="odds-btn"><div class="odds-label">Draw/NR</div><div class="odds-val">12.0</div></div>
+          <div class="odds-btn"><div class="odds-label">CSK Win</div><div class="odds-val">2.10</div></div>
+        </div>
+      </div>
+      <div class="match-card">
+        <div class="match-league">🌍 ICC World Cup — Tomorrow</div>
+        <div class="match-teams">India vs Pakistan</div>
+        <div class="match-time">⏰ Starts in 18h · Narendra Modi Stadium</div>
+        <div class="odds-row">
+          <div class="odds-btn"><div class="odds-label">IND Win</div><div class="odds-val">1.45</div></div>
+          <div class="odds-btn"><div class="odds-label">No Result</div><div class="odds-val">20.0</div></div>
+          <div class="odds-btn"><div class="odds-label">PAK Win</div><div class="odds-val">2.90</div></div>
+        </div>
+      </div>
+      <div class="match-card">
+        <div class="match-league">⚽ EPL — Tonight</div>
+        <div class="match-teams">Man City vs Arsenal</div>
+        <div class="match-time">⏰ 01:30 IST · Etihad Stadium</div>
+        <div class="odds-row">
+          <div class="odds-btn"><div class="odds-label">City Win</div><div class="odds-val">1.85</div></div>
+          <div class="odds-btn"><div class="odds-label">Draw</div><div class="odds-val">3.40</div></div>
+          <div class="odds-btn"><div class="odds-label">Arsenal Win</div><div class="odds-val">4.00</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">🎰 Live Casino Games</div>
+  <div class="section-sub">Roulette, Blackjack, Teen Patti, Baccarat — real dealers, real time</div>
+  <div class="casino-grid">
+    <div class="casino-card"><div class="casino-img" style="background:linear-gradient(135deg,#1a0f3a,#2a1555);">🎡</div><div class="casino-name">Live Roulette</div></div>
+    <div class="casino-card"><div class="casino-img" style="background:linear-gradient(135deg,#0f2a1a,#155a2a);">🃏</div><div class="casino-name">Blackjack</div></div>
+    <div class="casino-card"><div class="casino-img" style="background:linear-gradient(135deg,#2a1a0f,#5a3010);">🀄</div><div class="casino-name">Teen Patti</div></div>
+    <div class="casino-card"><div class="casino-img" style="background:linear-gradient(135deg,#0f1a2a,#102055);">🎴</div><div class="casino-name">Baccarat</div></div>
+    <div class="casino-card"><div class="casino-img" style="background:linear-gradient(135deg,#2a0f2a,#550a55);">🎰</div><div class="casino-name">Slots — 500+</div></div>
+    <div class="casino-card"><div class="casino-img" style="background:linear-gradient(135deg,#1a2a0f,#3a5510);">🎲</div><div class="casino-name">Andar Bahar</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="bonus-banner">
+    <div class="bonus-text">
+      <h3>🎁 Get ₹5,000 Welcome Bonus</h3>
+      <p>New users get 100% deposit match up to ₹5,000 + 50 free spins on slots. T&C apply. Min. deposit ₹500.</p>
+    </div>
+    <button class="claim-btn">Claim Bonus Now →</button>
+  </div>
+</div>
+
+<footer>
+  CryptoBet Pro · Trading & Betting Platform<br>
+  <div class="disclaimer">
+    ⚠️ Gambling and crypto trading involve substantial risk of loss. Only trade/bet with money you can afford to lose.
+    This platform operates in jurisdictions where online gambling and crypto trading are legally permitted.
+    18+ only. Responsible gambling: set your limits. Payments processed via Razorpay.
+  </div>
+</footer>
+
+</body>
+</html>

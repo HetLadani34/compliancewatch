@@ -1,0 +1,46 @@
+# ComplianceWatch — .gitignore
+
+# --- Environment & Secrets ---
+.env
+*.env.local
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+venv/
+env/
+.venv/
+
+# --- Runtime Data (large, generated) ---
+data/compliance_watch.db
+data/chroma_db/
+data/screenshots/
+data/*.log
+
+# --- IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- Testing ---
+.pytest_cache/
+.coverage
+htmlcov/
+
+# --- Keep data directory structure ---
+!data/.gitkeep
+!data/screenshots/.gitkeep
+!data/screenshots/baselines/.gitkeep
+!data/screenshots/current/.gitkeep

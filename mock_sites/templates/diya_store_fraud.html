@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VapeZone India — Premium E-Cigarettes, Vapes & E-Liquids</title>
+  <meta name="description" content="Buy premium vapes, e-cigarettes, pod systems, and e-liquids online. Best prices on Juul, Caliburn, Voopoo and more. Fast delivery across India."/>
+  <style>
+    :root {
+      --brand-primary: #00c9a7;
+      --brand-dark: #0a0e1a;
+      --brand-card: #111827;
+      --brand-border: #1f2937;
+      --text-main: #f0f4f8;
+      --text-muted: #8899aa;
+      --accent: #7c3aed;
+      --danger: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--brand-dark); color: var(--text-main); }
+
+    nav { background: #060a14; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; border-bottom: 1px solid var(--brand-border); }
+    nav .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: 2px; }
+    nav .logo .v { color: var(--brand-primary); }
+    nav .logo .z { color: var(--accent); }
+    nav ul { list-style: none; display: flex; gap: 1.5rem; }
+    nav ul li a { color: var(--text-muted); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+    nav ul li a:hover { color: var(--brand-primary); }
+    nav .age-badge { background: var(--danger); color: #fff; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 4px; }
+
+    .hero { background: linear-gradient(135deg, #060a14 0%, #0d1a2e 60%, #0a1628 100%); padding: 5rem 2rem; text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: '💨'; font-size: 15rem; opacity: 0.04; position: absolute; top: -2rem; right: 5%; }
+    .hero .category-tag { display: inline-block; background: rgba(0,201,167,0.15); border: 1px solid var(--brand-primary); color: var(--brand-primary); border-radius: 20px; padding: 0.3rem 1rem; font-size: 0.8rem; margin-bottom: 1rem; }
+    .hero h1 { font-size: 3.2rem; font-weight: 900; background: linear-gradient(90deg, var(--brand-primary), #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { color: var(--text-muted); max-width: 600px; margin: 1rem auto; font-size: 1.1rem; line-height: 1.6; }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; }
+    .btn-primary { background: var(--brand-primary); color: #000; font-weight: 800; padding: 0.8rem 2rem; border-radius: 8px; text-decoration: none; font-size: 0.95rem; }
+    .btn-outline { border: 1px solid var(--brand-primary); color: var(--brand-primary); font-weight: 700; padding: 0.8rem 2rem; border-radius: 8px; text-decoration: none; font-size: 0.95rem; }
+
+    .age-warning { background: #1a0a0a; border: 1px solid var(--danger); border-radius: 8px; padding: 0.8rem 1.5rem; display: flex; align-items: center; gap: 0.75rem; max-width: 900px; margin: 1.5rem auto; font-size: 0.85rem; color: #fca5a5; }
+
+    .section { max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem; }
+    .section-title { font-size: 1.6rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.2rem; }
+    .section-subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; }
+
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.25rem; }
+    .product-card { background: var(--brand-card); border: 1px solid var(--brand-border); border-radius: 12px; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+    .product-card:hover { border-color: var(--brand-primary); transform: translateY(-4px); }
+    .product-img { height: 160px; display: flex; align-items: center; justify-content: center; font-size: 4.5rem; background: linear-gradient(135deg, #111827, #1a2435); }
+    .product-badge { position: relative; }
+    .badge-tag { position: absolute; top: 0.6rem; right: 0.6rem; background: var(--brand-primary); color: #000; font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 4px; }
+    .product-info { padding: 1rem; }
+    .product-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .product-brand { color: var(--brand-primary); font-size: 0.75rem; margin-bottom: 0.5rem; }
+    .product-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 0.75rem; }
+    .product-specs { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+    .spec-chip { background: rgba(124,58,237,0.2); border: 1px solid rgba(124,58,237,0.4); color: #a78bfa; font-size: 0.65rem; padding: 0.15rem 0.5rem; border-radius: 12px; }
+    .product-price { font-size: 1.2rem; font-weight: 800; color: var(--brand-primary); }
+    .product-price .original { text-decoration: line-through; color: #555; font-size: 0.85rem; font-weight: 400; margin-left: 0.4rem; }
+    .buy-btn { display: block; width: 100%; background: linear-gradient(90deg, var(--brand-primary), #00a896); color: #000; border: none; padding: 0.65rem; border-radius: 6px; margin-top: 0.75rem; font-size: 0.88rem; cursor: pointer; font-weight: 700; }
+    .buy-btn:hover { opacity: 0.9; }
+
+    .category-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem; }
+    .pill { background: var(--brand-card); border: 1px solid var(--brand-border); color: var(--text-muted); font-size: 0.82rem; padding: 0.4rem 1rem; border-radius: 50px; cursor: pointer; transition: all 0.2s; }
+    .pill:hover, .pill.active { background: var(--brand-primary); color: #000; border-color: var(--brand-primary); font-weight: 700; }
+
+    .nicotine-info { background: linear-gradient(135deg, #111827, #1a2435); border: 1px solid var(--brand-border); border-radius: 12px; padding: 2rem; margin: 2rem 0; }
+    .nicotine-info h3 { color: var(--brand-primary); font-size: 1.1rem; margin-bottom: 0.75rem; }
+    .nicotine-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.75rem; }
+    .nicotine-item { background: rgba(0,201,167,0.08); border: 1px solid rgba(0,201,167,0.2); border-radius: 8px; padding: 0.75rem; text-align: center; }
+    .nicotine-level { font-size: 1.4rem; font-weight: 900; color: var(--brand-primary); }
+    .nicotine-label { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+    footer { background: #06080f; border-top: 1px solid var(--brand-border); padding: 2rem; text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 4rem; }
+    footer .disclaimer { color: #555; font-size: 0.72rem; max-width: 700px; margin: 0.75rem auto 0; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><span class="v">Vape</span><span class="z">Zone</span> India</div>
+  <ul>
+    <li><a href="#">Devices</a></li>
+    <li><a href="#">E-Liquids</a></li>
+    <li><a href="#">Pod Systems</a></li>
+    <li><a href="#">Coils & Accessories</a></li>
+    <li><a href="#">Nicotine Pouches</a></li>
+    <li><a href="#">Deals</a></li>
+  </ul>
+  <span class="age-badge">18+ ONLY</span>
+</nav>
+
+<div class="hero">
+  <div class="category-tag">🚬 India's #1 Online Vape Store</div>
+  <h1>Upgrade Your Vaping Experience</h1>
+  <p>Shop premium e-cigarettes, pod kits, e-liquids, and nicotine pouches. Best prices guaranteed. Discreet packaging. Ships across India.</p>
+  <div class="hero-btns">
+    <a href="#" class="btn-primary">🛒 Shop Devices</a>
+    <a href="#" class="btn-outline">Explore E-Liquids →</a>
+  </div>
+</div>
+
+<div class="age-warning">
+  ⚠️ <strong>Age Verification Required:</strong> You must be 18 years or older to purchase. Products contain nicotine which is addictive. Not for sale to minors.
+</div>
+
+<div class="section">
+  <div class="section-title">🔥 Trending Vape Devices</div>
+  <div class="section-subtitle">Latest pod systems, mods, and starter kits</div>
+
+  <div class="category-pills">
+    <span class="pill active">All Devices</span>
+    <span class="pill">Pod Systems</span>
+    <span class="pill">Box Mods</span>
+    <span class="pill">Disposables</span>
+    <span class="pill">Starter Kits</span>
+    <span class="pill">Coil Mods</span>
+  </div>
+
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-img product-badge">💨<span class="badge-tag">BESTSELLER</span></div>
+      <div class="product-info">
+        <div class="product-brand">UWELL CALIBURN</div>
+        <div class="product-name">Caliburn G3 Pod System</div>
+        <div class="product-specs">
+          <span class="spec-chip">25W Output</span>
+          <span class="spec-chip">900mAh</span>
+          <span class="spec-chip">Type-C</span>
+        </div>
+        <div class="product-desc">Compact, refillable pod system with 0.6Ω mesh coil. Adjustable wattage. Leak-resistant design.</div>
+        <div class="product-price">₹2,499 <span class="original">₹3,500</span></div>
+        <button class="buy-btn">Buy Now</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img product-badge">🌬️<span class="badge-tag">NEW</span></div>
+      <div class="product-info">
+        <div class="product-brand">VOOPOO DRAG</div>
+        <div class="product-name">DRAG S Pro Pod Mod</div>
+        <div class="product-specs">
+          <span class="spec-chip">80W Max</span>
+          <span class="spec-chip">3000mAh</span>
+          <span class="spec-chip">GENE.TT Chip</span>
+        </div>
+        <div class="product-desc">Advanced pod mod with intelligent GENE.TT chipset. Supports both MTL and DL vaping styles.</div>
+        <div class="product-price">₹4,999 <span class="original">₹6,500</span></div>
+        <button class="buy-btn">Buy Now</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img product-badge">☁️<span class="badge-tag">HOT</span></div>
+      <div class="product-info">
+        <div class="product-brand">ELFBAR</div>
+        <div class="product-name">ElfBar 5000 Puffs Disposable</div>
+        <div class="product-specs">
+          <span class="spec-chip">5000 Puffs</span>
+          <span class="spec-chip">5% Nicotine</span>
+          <span class="spec-chip">20+ Flavours</span>
+        </div>
+        <div class="product-desc">No charging, no refilling. Ready to use. Available in Blueberry Ice, Mango, Watermelon, Strawberry, and more.</div>
+        <div class="product-price">₹899 <span class="original">₹1,200</span></div>
+        <button class="buy-btn">Buy Now</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">🟣</div>
+      <div class="product-info">
+        <div class="product-brand">JUUL LABS</div>
+        <div class="product-name">Juul 2 Starter Kit</div>
+        <div class="product-specs">
+          <span class="spec-chip">Auto-draw</span>
+          <span class="spec-chip">200mAh</span>
+          <span class="spec-chip">JuulPod</span>
+        </div>
+        <div class="product-desc">The iconic closed pod system. Precise nicotine delivery, leak-resistant pods, smart temperature regulation.</div>
+        <div class="product-price">₹1,799 <span class="original">₹2,499</span></div>
+        <button class="buy-btn">Buy Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="nicotine-info">
+    <h3>🧪 Available Nicotine Strengths</h3>
+    <div class="nicotine-grid">
+      <div class="nicotine-item"><div class="nicotine-level">0mg</div><div class="nicotine-label">Nicotine Free</div></div>
+      <div class="nicotine-item"><div class="nicotine-level">3mg</div><div class="nicotine-label">Very Light</div></div>
+      <div class="nicotine-item"><div class="nicotine-level">6mg</div><div class="nicotine-label">Light</div></div>
+      <div class="nicotine-item"><div class="nicotine-level">12mg</div><div class="nicotine-label">Regular</div></div>
+      <div class="nicotine-item"><div class="nicotine-level">18mg</div><div class="nicotine-label">Strong</div></div>
+      <div class="nicotine-item"><div class="nicotine-level">50mg</div><div class="nicotine-label">Nic Salt Max</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">🧴 E-Liquid Flavours</div>
+  <div class="section-subtitle">Premium imported e-liquids — salt nic & freebase</div>
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-img">🫐</div>
+      <div class="product-info">
+        <div class="product-brand">NAKED 100</div>
+        <div class="product-name">Blueberry Belts Salt Nic</div>
+        <div class="product-desc">Sweet blueberry candy on inhale, cool menthol on exhale. 30ml. Available in 25mg and 50mg nic salt.</div>
+        <div class="product-price">₹699 <span class="original">₹950</span></div>
+        <button class="buy-btn">Add to Cart</button>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">🍋</div>
+      <div class="product-info">
+        <div class="product-brand">NASTY JUICE</div>
+        <div class="product-name">Trap Queen Lychee ICE</div>
+        <div class="product-desc">Fresh lychee with a cool arctic blast. 60ml. 3mg / 6mg options. Award-winning Malaysian blend.</div>
+        <div class="product-price">₹849 <span class="original">₹1,100</span></div>
+        <button class="buy-btn">Add to Cart</button>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">🍓</div>
+      <div class="product-info">
+        <div class="product-brand">SALT BRÆ</div>
+        <div class="product-name">Strawberry Mango Salt Nic</div>
+        <div class="product-desc">Ripe strawberry and tropical mango fusion. 30ml. 50mg nic salt — ideal for pod systems.</div>
+        <div class="product-price">₹599 <span class="original">₹799</span></div>
+        <button class="buy-btn">Add to Cart</button>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">🌿</div>
+      <div class="product-info">
+        <div class="product-brand">TOBACCO KINGS</div>
+        <div class="product-name">Original Tobacco Freebase</div>
+        <div class="product-desc">Rich, smooth tobacco flavour for ex-smokers transitioning to vaping. 60ml. 3mg / 6mg / 12mg.</div>
+        <div class="product-price">₹749 <span class="original">₹999</span></div>
+        <button class="buy-btn">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  VapeZone India · Vaping & E-Cigarette Store<br>
+  Nicotine products. For adults 18+ only.<br>
+  <div class="disclaimer">
+    WARNING: This product contains nicotine, which is a highly addictive chemical. Not for sale to minors.
+    Consult a doctor before use if pregnant or have a heart condition. For quit-smoking aid only.
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Diya & Co. Handcrafts — Handmade Diyas, Candles & Home Décor</title>
+  <meta name="description" content="Shop authentic handmade diyas, earthen candles, and festive home décor crafted by artisans in Rajasthan. Free shipping above ₹499."/>
+  <style>
+    :root {
+      --brand-primary: #c0622a;
+      --brand-secondary: #f4a261;
+      --brand-bg: #fdf6ec;
+      --text-dark: #2d2013;
+      --text-muted: #6b5744;
+      --card-bg: #ffffff;
+      --border: #e8d5b7;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--brand-bg); color: var(--text-dark); }
+
+    /* NAV */
+    nav { background: var(--brand-primary); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    nav .logo { color: #fff; font-size: 1.4rem; font-weight: 700; letter-spacing: 1px; }
+    nav .logo span { color: var(--brand-secondary); }
+    nav ul { list-style: none; display: flex; gap: 1.5rem; }
+    nav ul li a { color: rgba(255,255,255,0.9); text-decoration: none; font-size: 0.9rem; }
+    nav ul li a:hover { color: var(--brand-secondary); }
+
+    /* HERO */
+    .hero { background: linear-gradient(135deg, #c0622a 0%, #e07b3a 50%, #f4a261 100%); color: #fff; padding: 5rem 2rem; text-align: center; }
+    .hero h1 { font-size: 3rem; font-weight: 800; text-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+    .hero p { font-size: 1.2rem; margin: 1rem auto; max-width: 600px; opacity: 0.92; }
+    .hero .badge { display: inline-block; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.5); border-radius: 20px; padding: 0.3rem 1rem; font-size: 0.85rem; margin-top: 0.5rem; }
+    .cta-btn { display: inline-block; margin-top: 2rem; background: #fff; color: var(--brand-primary); font-weight: 700; padding: 0.85rem 2.5rem; border-radius: 50px; font-size: 1rem; text-decoration: none; box-shadow: 0 4px 20px rgba(0,0,0,0.15); transition: transform 0.2s; }
+    .cta-btn:hover { transform: translateY(-2px); }
+
+    /* PRODUCT SECTION */
+    .section { max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem; }
+    .section-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.25rem; color: var(--brand-primary); }
+    .section-subtitle { color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem; }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1.5rem; }
+
+    .product-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; }
+    .product-card:hover { box-shadow: 0 8px 30px rgba(192,98,42,0.15); transform: translateY(-3px); }
+    .product-img { height: 180px; display: flex; align-items: center; justify-content: center; font-size: 5rem; background: linear-gradient(135deg, #fdf0e0, #fde4c0); }
+    .product-info { padding: 1rem; }
+    .product-name { font-weight: 700; font-size: 1rem; margin-bottom: 0.25rem; }
+    .product-desc { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem; line-height: 1.4; }
+    .product-price { font-size: 1.15rem; font-weight: 800; color: var(--brand-primary); }
+    .product-price .original { text-decoration: line-through; color: #aaa; font-size: 0.85rem; font-weight: 400; margin-left: 0.4rem; }
+    .add-cart-btn { display: block; width: 100%; background: var(--brand-primary); color: #fff; border: none; padding: 0.6rem; border-radius: 6px; margin-top: 0.75rem; font-size: 0.9rem; cursor: pointer; font-weight: 600; }
+    .add-cart-btn:hover { background: #a8511e; }
+
+    /* USP STRIP */
+    .usp-strip { background: var(--brand-primary); color: #fff; padding: 1.5rem 2rem; display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; }
+    .usp-item { text-align: center; }
+    .usp-item .icon { font-size: 1.8rem; }
+    .usp-item .label { font-size: 0.8rem; margin-top: 0.25rem; opacity: 0.9; }
+
+    /* TESTIMONIALS */
+    .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+    .testimonial-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem; }
+    .stars { color: #f4a261; font-size: 1rem; margin-bottom: 0.5rem; }
+    .testimonial-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
+    .reviewer { font-size: 0.8rem; font-weight: 700; margin-top: 0.75rem; color: var(--text-dark); }
+
+    /* FOOTER */
+    footer { background: var(--text-dark); color: rgba(255,255,255,0.7); text-align: center; padding: 2rem; font-size: 0.85rem; margin-top: 4rem; }
+    footer strong { color: var(--brand-secondary); }
+    .razorpay-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: #2b2b2b; border: 1px solid #444; border-radius: 6px; padding: 0.4rem 0.8rem; margin-top: 1rem; font-size: 0.75rem; }
+    .rzp-dot { width: 8px; height: 8px; border-radius: 50%; background: #4caf50; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Diya <span>&</span> Co.</div>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Diyas</a></li>
+    <li><a href="#">Candles</a></li>
+    <li><a href="#">Festive Sets</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="badge">🎨 Handcrafted by Rajasthani Artisans · Est. 2019</div>
+  <h1>Light Up Every Celebration</h1>
+  <p>Authentic handmade diyas, terracotta candles, and festive home décor — crafted with love by over 200 rural artisans across Rajasthan.</p>
+  <a href="#" class="cta-btn">🛍️ Shop the Diwali Collection</a>
+</section>
+
+<div class="usp-strip">
+  <div class="usp-item"><div class="icon">🚚</div><div class="label">Free Shipping<br>above ₹499</div></div>
+  <div class="usp-item"><div class="icon">🏺</div><div class="label">100% Handmade<br>Terracotta</div></div>
+  <div class="usp-item"><div class="icon">🌿</div><div class="label">Eco-Friendly<br>& Sustainable</div></div>
+  <div class="usp-item"><div class="icon">↩️</div><div class="label">Easy 7-Day<br>Returns</div></div>
+  <div class="usp-item"><div class="icon">🔐</div><div class="label">Secure Payments<br>via Razorpay</div></div>
+</div>
+
+<div class="section">
+  <div class="section-title">✨ Bestselling Diyas</div>
+  <div class="section-subtitle">Diwali favourites — limited stock available. Order early!</div>
+  <div class="product-grid">
+
+    <div class="product-card">
+      <div class="product-img">🪔</div>
+      <div class="product-info">
+        <div class="product-name">Classic Terracotta Diya (Set of 12)</div>
+        <div class="product-desc">Traditional earthen diyas, hand-painted with natural pigments. Perfect for Diwali puja rituals.</div>
+        <div class="product-price">₹249 <span class="original">₹399</span></div>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">🕯️</div>
+      <div class="product-info">
+        <div class="product-name">Beeswax Votive Candle Set</div>
+        <div class="product-desc">Pure beeswax candles infused with saffron and rose. 40-hour burn time. No synthetic fragrance.</div>
+        <div class="product-price">₹399 <span class="original">₹549</span></div>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">🌸</div>
+      <div class="product-info">
+        <div class="product-name">Floating Lotus Diya Set</div>
+        <div class="product-desc">Decorative lotus-shaped diyas ideal for water bowls and rangoli arrangements. Set of 6.</div>
+        <div class="product-price">₹349 <span class="original">₹499</span></div>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">🏺</div>
+      <div class="product-info">
+        <div class="product-name">Warli Art Décor Diya</div>
+        <div class="product-desc">Hand-painted with traditional Warli tribal art. A collector's piece — each one is unique.</div>
+        <div class="product-price">₹599 <span class="original">₹799</span></div>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">💬 Customer Love</div>
+  <div class="section-subtitle">4.8★ average from 2,400+ verified reviews</div>
+  <div class="testimonial-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Ordered the Diwali set for my mother — she was speechless! The diyas are beautifully painted and arrived bubble-wrapped with care."</p>
+      <div class="reviewer">— Priya Sharma, Mumbai</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Finally an Indian brand that takes quality seriously. The beeswax candles burn so cleanly — no soot at all! Will order every year."</p>
+      <div class="reviewer">— Arjun Mehta, Bangalore</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★☆</div>
+      <p>"Great eco-friendly packaging and fast delivery. The Warli art diya is stunning — it's now a permanent fixture on our mantelpiece."</p>
+      <div class="reviewer">— Rekha Nair, Kochi</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <strong>Diya & Co. Handcrafts</strong><br>
+  Supporting rural artisans since 2019 · GST: 27AABCD1234E1Z5 · Jaipur, Rajasthan<br>
+  <div class="razorpay-badge"><div class="rzp-dot"></div> Payments secured by Razorpay</div>
+</footer>
+
+</body>
+</html>
